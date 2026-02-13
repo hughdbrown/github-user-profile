@@ -257,9 +257,7 @@ impl SearchableList {
         let query: String = self.search.value().to_lowercase();
         self.items
             .iter()
-            .filter(|item| {
-                query.is_empty() || item.label.to_lowercase().contains(&query)
-            })
+            .filter(|item| query.is_empty() || item.label.to_lowercase().contains(&query))
             .collect()
     }
 
@@ -307,10 +305,7 @@ impl SearchableList {
                         .map(|item| item.label.clone())
                         .collect();
                     if let Some(label) = visible.get(self.highlight)
-                        && let Some(item) = self
-                            .items
-                            .iter_mut()
-                            .find(|item| &item.label == label)
+                        && let Some(item) = self.items.iter_mut().find(|item| &item.label == label)
                     {
                         item.selected = !item.selected;
                     }
@@ -672,16 +667,17 @@ mod tests {
 
     #[test]
     fn test_single_select_new() {
-        let select =
-            SingleSelect::new("Template", vec!["Minimal".into(), "Full".into(), "Multi".into()]);
+        let select = SingleSelect::new(
+            "Template",
+            vec!["Minimal".into(), "Full".into(), "Multi".into()],
+        );
         assert_eq!(select.highlight(), 0);
         assert!(select.selected().is_none());
     }
 
     #[test]
     fn test_single_select_navigate() {
-        let mut select =
-            SingleSelect::new("Template", vec!["A".into(), "B".into(), "C".into()]);
+        let mut select = SingleSelect::new("Template", vec!["A".into(), "B".into(), "C".into()]);
         select.handle_key(key(KeyCode::Down));
         assert_eq!(select.highlight(), 1);
         select.handle_key(key(KeyCode::Up));
@@ -692,8 +688,7 @@ mod tests {
 
     #[test]
     fn test_single_select_confirm() {
-        let mut select =
-            SingleSelect::new("Template", vec!["A".into(), "B".into(), "C".into()]);
+        let mut select = SingleSelect::new("Template", vec!["A".into(), "B".into(), "C".into()]);
         select.handle_key(key(KeyCode::Down));
         select.handle_key(key(KeyCode::Enter));
         assert_eq!(select.selected(), Some("B"));
@@ -722,7 +717,11 @@ mod tests {
         let mut list = SearchableList::new(vec!["Rust", "Ruby", "Python"]);
         list.search.handle_key(char_key('r'));
         list.search.handle_key(char_key('u'));
-        let visible: Vec<&str> = list.visible_items().iter().map(|i| i.label.as_str()).collect();
+        let visible: Vec<&str> = list
+            .visible_items()
+            .iter()
+            .map(|i| i.label.as_str())
+            .collect();
         assert_eq!(visible, vec!["Rust", "Ruby"]);
     }
 
@@ -731,7 +730,11 @@ mod tests {
         let mut list = SearchableList::new(vec!["Rust", "Ruby", "Python"]);
         list.search.handle_key(char_key('R'));
         list.search.handle_key(char_key('U'));
-        let visible: Vec<&str> = list.visible_items().iter().map(|i| i.label.as_str()).collect();
+        let visible: Vec<&str> = list
+            .visible_items()
+            .iter()
+            .map(|i| i.label.as_str())
+            .collect();
         assert_eq!(visible, vec!["Rust", "Ruby"]);
     }
 
@@ -904,7 +907,10 @@ mod tests {
         pi.handle_key(key(KeyCode::Enter));
         assert_eq!(
             pi.entries(),
-            &[("My Post".to_string(), "https://example.com/post".to_string())]
+            &[(
+                "My Post".to_string(),
+                "https://example.com/post".to_string()
+            )]
         );
         // Fields should be cleared
         assert_eq!(pi.first.value(), "");

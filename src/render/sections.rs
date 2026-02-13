@@ -267,9 +267,7 @@ pub fn render_blog(blog: &Blog) -> String {
     if let Some(rss_urls) = &blog.rss_urls
         && !rss_urls.is_empty()
     {
-        sections.push(
-            "<!-- BLOG-POST-LIST:START -->\n<!-- BLOG-POST-LIST:END -->".to_string(),
-        );
+        sections.push("<!-- BLOG-POST-LIST:START -->\n<!-- BLOG-POST-LIST:END -->".to_string());
     }
 
     // Manual articles
@@ -287,28 +285,19 @@ pub fn render_blog(blog: &Blog) -> String {
 
     // YouTube
     if let Some(youtube) = &blog.youtube {
-        sections.push(format!(
-            "**YouTube**: [My Channel]({})",
-            youtube
-        ));
+        sections.push(format!("**YouTube**: [My Channel]({})", youtube));
     }
 
     // Newsletter
     if let Some(newsletter) = &blog.newsletter {
-        sections.push(format!(
-            "**Newsletter**: [Subscribe]({})",
-            newsletter
-        ));
+        sections.push(format!("**Newsletter**: [Subscribe]({})", newsletter));
     }
 
     if sections.is_empty() {
         return String::new();
     }
 
-    format!(
-        "### Latest Blog Posts\n\n{}",
-        sections.join("\n\n")
-    )
+    format!("### Latest Blog Posts\n\n{}", sections.join("\n\n"))
 }
 
 /// Render the Dynamic / Real-time section.
@@ -327,7 +316,10 @@ pub fn render_dynamic(dynamic: &Dynamic) -> String {
     }
 
     if dynamic.github_activity.unwrap_or(false) {
-        items.push("### Recent Activity\n\n<!--START_SECTION:activity-->\n<!--END_SECTION:activity-->".to_string());
+        items.push(
+            "### Recent Activity\n\n<!--START_SECTION:activity-->\n<!--END_SECTION:activity-->"
+                .to_string(),
+        );
     }
 
     if let Some(uid) = &dynamic.stackoverflow_uid {
@@ -637,7 +629,10 @@ mod tests {
     #[test]
     fn test_render_featured_projects() {
         let projects = Projects {
-            repos: Some(vec!["alice/cool-cli".to_string(), "alice/other-lib".to_string()]),
+            repos: Some(vec![
+                "alice/cool-cli".to_string(),
+                "alice/other-lib".to_string(),
+            ]),
             display: Some(ProjectDisplay::PinCards),
         };
         let result: String = render_projects(&projects, &test_meta(), "tokyonight", false);

@@ -17,8 +17,7 @@ pub fn load_config(path: &Path) -> Result<ProfileConfig> {
 pub fn save_config(config: &ProfileConfig, path: &Path) -> Result<()> {
     let content =
         toml::to_string_pretty(config).context("failed to serialize profile configuration")?;
-    std::fs::write(path, content)
-        .with_context(|| format!("could not write {}", path.display()))?;
+    std::fs::write(path, content).with_context(|| format!("could not write {}", path.display()))?;
     Ok(())
 }
 
@@ -192,7 +191,8 @@ mod tests {
             .filter(|line: &&str| !line.starts_with('#') && !line.is_empty())
             .collect::<Vec<&str>>()
             .join("\n");
-        let config: ProfileConfig = toml::from_str(&uncommented).expect("starter TOML should parse");
+        let config: ProfileConfig =
+            toml::from_str(&uncommented).expect("starter TOML should parse");
         assert_eq!(config.meta.username, "your-github-username");
     }
 }

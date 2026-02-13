@@ -32,10 +32,7 @@ impl WizardStep {
     ];
 
     pub fn index(&self) -> usize {
-        WizardStep::ALL
-            .iter()
-            .position(|s| s == self)
-            .unwrap_or(0)
+        WizardStep::ALL.iter().position(|s| s == self).unwrap_or(0)
     }
 
     pub fn next(&self) -> Self {
@@ -106,7 +103,10 @@ mod tests {
         assert_eq!(WizardStep::Dynamic.next(), WizardStep::Extras);
         assert_eq!(WizardStep::Extras.next(), WizardStep::Layout);
         assert_eq!(WizardStep::Layout.next(), WizardStep::PreviewGenerate);
-        assert_eq!(WizardStep::PreviewGenerate.next(), WizardStep::PreviewGenerate);
+        assert_eq!(
+            WizardStep::PreviewGenerate.next(),
+            WizardStep::PreviewGenerate
+        );
     }
 
     #[test]

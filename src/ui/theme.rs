@@ -18,13 +18,13 @@ impl Default for Theme {
         // Tokyonight-inspired palette
         Self {
             primary: Color::Rgb(122, 162, 247),   // Blue
-            secondary: Color::Rgb(187, 154, 247),  // Purple
-            bg: Color::Rgb(26, 27, 38),            // Dark background
-            fg: Color::Rgb(192, 202, 245),         // Light foreground
-            accent: Color::Rgb(158, 206, 106),     // Green
-            error: Color::Rgb(247, 118, 142),      // Red/pink
-            border: Color::Rgb(59, 66, 97),        // Muted border
-            highlight: Color::Rgb(69, 78, 115),    // Selection highlight
+            secondary: Color::Rgb(187, 154, 247), // Purple
+            bg: Color::Rgb(26, 27, 38),           // Dark background
+            fg: Color::Rgb(192, 202, 245),        // Light foreground
+            accent: Color::Rgb(158, 206, 106),    // Green
+            error: Color::Rgb(247, 118, 142),     // Red/pink
+            border: Color::Rgb(59, 66, 97),       // Muted border
+            highlight: Color::Rgb(69, 78, 115),   // Selection highlight
         }
     }
 }

@@ -1,5 +1,10 @@
 /// URL builder for github-readme-stats card.
-pub fn github_stats_url(username: &str, theme: &str, show_icons: bool, hide_border: bool) -> String {
+pub fn github_stats_url(
+    username: &str,
+    theme: &str,
+    show_icons: bool,
+    hide_border: bool,
+) -> String {
     format!(
         "https://github-readme-stats.vercel.app/api?username={}&theme={}&show_icons={}&hide_border={}",
         username, theme, show_icons, hide_border
@@ -7,7 +12,13 @@ pub fn github_stats_url(username: &str, theme: &str, show_icons: bool, hide_bord
 }
 
 /// URL builder for top languages card.
-pub fn top_langs_url(username: &str, layout: &str, langs_count: u32, theme: &str, hide_border: bool) -> String {
+pub fn top_langs_url(
+    username: &str,
+    layout: &str,
+    langs_count: u32,
+    theme: &str,
+    hide_border: bool,
+) -> String {
     format!(
         "https://github-readme-stats.vercel.app/api/top-langs/?username={}&layout={}&langs_count={}&theme={}&hide_border={}",
         username, layout, langs_count, theme, hide_border
@@ -106,10 +117,7 @@ pub fn trophies_url(username: &str, theme: &str) -> String {
 
 /// URL builder for StackOverflow flair badge.
 pub fn stackoverflow_badge_url(uid: &str) -> String {
-    format!(
-        "https://stackoverflow.com/users/flair/{}.png",
-        uid
-    )
+    format!("https://stackoverflow.com/users/flair/{}.png", uid)
 }
 
 /// Simple percent-encoding for URL query parameters.
@@ -342,7 +350,8 @@ mod tests {
 
     #[test]
     fn test_social_badge_markdown() {
-        let md: String = social_badge_markdown("Twitter", "000000", "x", "https://twitter.com/alice");
+        let md: String =
+            social_badge_markdown("Twitter", "000000", "x", "https://twitter.com/alice");
         assert!(md.starts_with("[![Twitter]"));
         assert!(md.contains("https://twitter.com/alice"));
         assert!(md.contains("style=for-the-badge"));
@@ -352,18 +361,36 @@ mod tests {
     fn test_skill_icon_lookup() {
         assert_eq!(skill_icon_lookup("Rust"), Some(("rust", "000000")));
         assert_eq!(skill_icon_lookup("python"), Some(("python", "3776AB")));
-        assert_eq!(skill_icon_lookup("TYPESCRIPT"), Some(("typescript", "3178C6")));
+        assert_eq!(
+            skill_icon_lookup("TYPESCRIPT"),
+            Some(("typescript", "3178C6"))
+        );
         assert_eq!(skill_icon_lookup("Docker"), Some(("docker", "2496ED")));
-        assert_eq!(skill_icon_lookup("PostgreSQL"), Some(("postgresql", "4169E1")));
-        assert_eq!(skill_icon_lookup("AWS"), Some(("amazonwebservices", "232F3E")));
+        assert_eq!(
+            skill_icon_lookup("PostgreSQL"),
+            Some(("postgresql", "4169E1"))
+        );
+        assert_eq!(
+            skill_icon_lookup("AWS"),
+            Some(("amazonwebservices", "232F3E"))
+        );
         assert!(skill_icon_lookup("unknown-tech").is_none());
     }
 
     #[test]
     fn test_social_platform_info() {
-        assert_eq!(social_platform_info("twitter"), Some(("Twitter", "x", "000000")));
-        assert_eq!(social_platform_info("LinkedIn"), Some(("LinkedIn", "linkedin", "0077B5")));
-        assert_eq!(social_platform_info("github"), Some(("GitHub", "github", "181717")));
+        assert_eq!(
+            social_platform_info("twitter"),
+            Some(("Twitter", "x", "000000"))
+        );
+        assert_eq!(
+            social_platform_info("LinkedIn"),
+            Some(("LinkedIn", "linkedin", "0077B5"))
+        );
+        assert_eq!(
+            social_platform_info("github"),
+            Some(("GitHub", "github", "181717"))
+        );
         assert!(social_platform_info("nonexistent").is_none());
     }
 
