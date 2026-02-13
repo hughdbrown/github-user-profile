@@ -1,0 +1,82 @@
+[meta]
+username = "alice"
+name = "Alice"
+
+[header]
+style = "typing_svg"
+typing_lines = ["Rust Developer", "Open Source Enthusiast"]
+typing_font = "Fira Code"
+typing_color = "f75c7e"
+tagline = "Building cool things with Rust"
+
+[about]
+role = "Backend Engineer"
+company = "Acme Corp"
+current_work = "cool-cli"
+learning = "WebAssembly"
+reach_me = "Rust, CLI tools, terminal UIs"
+fun_fact = "I love ferris the crab"
+pronouns = "she/her"
+location = "San Francisco, CA"
+
+[social]
+twitter = "https://twitter.com/alice"
+linkedin = "https://linkedin.com/in/alice"
+github = "https://github.com/alice"
+
+[skills]
+languages = ["Rust", "Python", "TypeScript"]
+frameworks = ["Actix", "React"]
+tools = ["Docker", "Git", "Neovim"]
+databases = ["PostgreSQL", "Redis"]
+cloud = ["AWS", "Vercel"]
+
+[stats]
+stats_card = true
+top_langs = true
+streak = true
+profile_views = true
+theme = "tokyonight"
+hide_border = false
+top_langs_layout = "compact"
+top_langs_count = 8
+
+[projects]
+repos = ["alice/cool-cli", "alice/awesome-lib"]
+display = "pin_cards"
+
+[blog]
+rss_urls = ["https://alice.dev/feed.xml"]
+youtube = "https://youtube.com/@alice"
+newsletter = "https://alice.dev/newsletter"
+
+[[blog.articles]]
+title = "Getting Started with Rust"
+url = "https://alice.dev/rust-intro"
+
+[[blog.articles]]
+title = "Building CLI Tools"
+url = "https://alice.dev/cli-tools"
+
+[dynamic]
+spotify_uid = "alice123"
+wakatime = true
+github_activity = true
+
+[layout]
+template = "full"
+dark_mode = true
+centered = false
+
+[sponsors]
+github_sponsors = true
+kofi = "https://ko-fi.com/alice"
+
+[extras]
+pgp_fingerprint = "ABCD 1234 EFGH 5678"
+certifications = ["AWS Certified Developer", "CKA"]
+custom_blocks = ["Made with Rust and love"]
+
+[[extras.collapsible]]
+summary = "More about me"
+content = "I started programming in 2015 and fell in love with systems programming."

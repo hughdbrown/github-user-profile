@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 /// Top-level profile configuration. All sections except `meta` are optional.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct ProfileConfig {
     pub meta: Meta,
     pub header: Option<Header>,
@@ -17,39 +17,11 @@ pub struct ProfileConfig {
     pub extras: Option<Extras>,
 }
 
-impl Default for ProfileConfig {
-    fn default() -> Self {
-        Self {
-            meta: Meta::default(),
-            header: None,
-            about: None,
-            social: None,
-            skills: None,
-            stats: None,
-            projects: None,
-            blog: None,
-            dynamic: None,
-            layout: None,
-            sponsors: None,
-            extras: None,
-        }
-    }
-}
-
 /// Required metadata — at minimum, the GitHub username.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Meta {
     pub username: String,
     pub name: Option<String>,
-}
-
-impl Default for Meta {
-    fn default() -> Self {
-        Self {
-            username: String::new(),
-            name: None,
-        }
-    }
 }
 
 /// Header section: banner, typing SVG, or text greeting.

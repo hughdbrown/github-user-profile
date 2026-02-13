@@ -41,7 +41,7 @@ pub fn render(config: &ProfileConfig) -> String {
         .collect();
 
     if is_multi_column(template) && rendered.len() > 1 {
-        let mid: usize = (rendered.len() + 1) / 2;
+        let mid: usize = rendered.len().div_ceil(2);
         let left: String = rendered[..mid].join("\n\n");
         let right: String = rendered[mid..].join("\n\n");
         wrap_multi_column(&left, &right)
@@ -65,17 +65,17 @@ fn render_section(
         Section::About => config
             .about
             .as_ref()
-            .map(|a| sections::render_about(a))
+            .map(sections::render_about)
             .unwrap_or_default(),
         Section::Social => config
             .social
             .as_ref()
-            .map(|s| sections::render_social(s))
+            .map(sections::render_social)
             .unwrap_or_default(),
         Section::Skills => config
             .skills
             .as_ref()
-            .map(|s| sections::render_skills(s))
+            .map(sections::render_skills)
             .unwrap_or_default(),
         Section::Stats => config
             .stats
@@ -90,12 +90,12 @@ fn render_section(
         Section::Blog => config
             .blog
             .as_ref()
-            .map(|b| sections::render_blog(b))
+            .map(sections::render_blog)
             .unwrap_or_default(),
         Section::Dynamic => config
             .dynamic
             .as_ref()
-            .map(|d| sections::render_dynamic(d))
+            .map(sections::render_dynamic)
             .unwrap_or_default(),
         Section::Sponsors => config
             .sponsors
@@ -105,7 +105,7 @@ fn render_section(
         Section::Extras => config
             .extras
             .as_ref()
-            .map(|e| sections::render_extras(e))
+            .map(sections::render_extras)
             .unwrap_or_default(),
     }
 }

@@ -264,25 +264,25 @@ pub fn render_blog(blog: &Blog) -> String {
     let mut sections: Vec<String> = Vec::new();
 
     // RSS markers for GitHub Action
-    if let Some(rss_urls) = &blog.rss_urls {
-        if !rss_urls.is_empty() {
-            sections.push(
-                "<!-- BLOG-POST-LIST:START -->\n<!-- BLOG-POST-LIST:END -->".to_string(),
-            );
-        }
+    if let Some(rss_urls) = &blog.rss_urls
+        && !rss_urls.is_empty()
+    {
+        sections.push(
+            "<!-- BLOG-POST-LIST:START -->\n<!-- BLOG-POST-LIST:END -->".to_string(),
+        );
     }
 
     // Manual articles
-    if let Some(articles) = &blog.articles {
-        if !articles.is_empty() {
-            let list: String = articles
-                .iter()
-                .enumerate()
-                .map(|(i, a): (usize, &Article)| format!("{}. [{}]({})", i + 1, a.title, a.url))
-                .collect::<Vec<String>>()
-                .join("\n");
-            sections.push(list);
-        }
+    if let Some(articles) = &blog.articles
+        && !articles.is_empty()
+    {
+        let list: String = articles
+            .iter()
+            .enumerate()
+            .map(|(i, a): (usize, &Article)| format!("{}. [{}]({})", i + 1, a.title, a.url))
+            .collect::<Vec<String>>()
+            .join("\n");
+        sections.push(list);
     }
 
     // YouTube
@@ -400,15 +400,15 @@ pub fn render_extras(extras: &Extras) -> String {
     }
 
     // Certifications
-    if let Some(certs) = &extras.certifications {
-        if !certs.is_empty() {
-            let list: String = certs
-                .iter()
-                .map(|c: &String| format!("- {}", c))
-                .collect::<Vec<String>>()
-                .join("\n");
-            items.push(format!("**Certifications**\n\n{}", list));
-        }
+    if let Some(certs) = &extras.certifications
+        && !certs.is_empty()
+    {
+        let list: String = certs
+            .iter()
+            .map(|c: &String| format!("- {}", c))
+            .collect::<Vec<String>>()
+            .join("\n");
+        items.push(format!("**Certifications**\n\n{}", list));
     }
 
     // Collapsible sections
